@@ -1,33 +1,37 @@
-import React, { Component } from 'react';
+function AppNav(props) {
 
-class AppNav extends Component {
-  render() {
-    const { navItems, handleNavClick } = this.props;
-
-    return (
-      <nav>
-        {navItems.map((navItem) =>
-          <a href="#" onClick={ () => handleNavClick(navItem.value)} >
-            {navItem.label} |
-          </a>
-        )}
-      </nav>
-    )
-  }
+  return (
+    <nav>
+    {
+      props.navItems.map((navItem) =>
+        <a href="#" onClick={ () => props.handleNavClick(navItem.value)} >
+          { navItem.label } |
+        </a>
+      )
+    }
+    </nav>
+  )
 }
 
 export default AppNav;
 
 
-// Functional solution:
-// function AppNav({ navItems, handleNavClick }) {
-//   return (
-//     <nav>
-//       {navItems.map((navItem) =>
-//         <a href="#" onClick={() => handleNavClick(navItem.value)} >
-//           {navItem.label} |
-//         </a>
-//       )}
-//     </nav>
-//   );
+// // class-based component equivalent code:
+// import React, { Component } from 'react';
+
+// class AppNav extends Component {
+  
+//   render() {
+//     return (
+//       <nav>
+//       {
+//         this.props.navItems.map((navItem) =>
+//           <a href="#" onClick={ () => this.props.handleNavClick(navItem.value)} >
+//             { navItem.label } |
+//           </a>
+//         )
+//       }
+//       </nav>
+//     )
+//   }
 // }
