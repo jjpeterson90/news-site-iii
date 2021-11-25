@@ -8,11 +8,11 @@ Today, we are going to create 1 new component, 2 pages, and a routing system to 
 
 Your choice: for this challenge, we have provided the solutions to `news-site-i` in the starting code here. It is up to you whether you would like to use our code or your own code from yesterday.
 
-1. Create a new React app from your terminal: `npx create-react-app news-site-II`
+1. Create a new React app from your terminal: `npx create-react-app news-site-ii`
 
-2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-I`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. (Reminder: make sure you're copying over your class-based components first.)
+2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-i`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. (Reminder: make sure you're copying over your class-based components first.)
 
-3. Copy over the `App.js` from either this repo or your `news-site-I` into your new `news-site-II` project.
+3. Copy over the `App.js` from either this repo or your `news-site-i` into your new `news-site-ii` project.
 
 4. Later today, we will be adding some styling. There are many libraries out there but the one we are going to use is [reactstrap](https://reactstrap.github.io/) or [react bootstrap](https://react-bootstrap.github.io/). Reactstrap and React Bootstrap are component libraries for React that uses Bootstrap styles under the hood. For reactstrap we need to install both `bootstrap` and `reactstrap`. You can use either reactstrap or react bootstrap. 
 
