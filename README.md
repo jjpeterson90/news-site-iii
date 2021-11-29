@@ -110,9 +110,10 @@ As mentioned above, the `HomePage` is largely complete - it simply renders the `
 `articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
 
 ## ArticlePage Component
-The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, you can once again use some React Router VERSION 5 (not VERSION 6)functionality that's automatically being passed into the `ArticlePage` component. React Router provides us with access to the URL params via the `props` object. The index you'll want to target within the articles array will be contained within `this.props.match.params.articleID` - this variable corresponds to [ARTICLEID] in this URL: `http://localhost:3000/article/[ARTICLEID]`
+The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, you can use some React Router VERSION 5 (not VERSION 6) functionality that's automatically being passed into the `ArticlePage` component. React Router provides us with access to the URL params via the `props` object. The index you'll want to target within the articles array will be contained within `this.props.match.params.articleID` - this variable corresponds to [ARTICLEID] in this URL: `http://localhost:3000/article/[ARTICLEID]`
 
-If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path. 
+__For React Router V6__
+If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
 
 React Router V6 example
 ```js
