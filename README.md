@@ -120,7 +120,7 @@ Write the code necessary to find the news article and pass it into the `Article`
 As of right now, keep in mind that people are able to actually hit `/articles/0`, which is not REST-ful - all IDs should start at 1. How can we alter the code to both get the correct article in the JSON file and be REST-ful?
 
 ## Style with Bootstrap
-Look into [this resource](https://reactstrap.github.io/components/navbar/) to style everything using Reactstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
+Look into [this resource](https://reactstrap.github.io/?path=/story/home-installation--page) to style everything using Reactstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
 
 ## Refactor into Functional Components
 Just as you did with `news-site-I`, open a new branch off of your `news-site-II` `master` called `functional-version` and refactor your components to make them functional. (You may have noticed our starting code for today included the functional solutions commented out in the components from `news-site-I` -- feel free to use these or your own.)
