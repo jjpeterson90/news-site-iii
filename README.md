@@ -56,7 +56,7 @@ The `ArticleList` component will receive an array of `articles` (if you want a r
 Don't worry about this not doing anything yet - we will wire it up in the next section.
 
 ## React Router
-[React Router](https://reacttraining.com/react-router/web/guides/philosophy) is a popular open source library that's used to control paging in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/componentx` is requested.
+[React Router V6](https://reactrouter.com/docs/en/v6) ([React Router V5](https://reacttraining.com/react-router/web/guides/philosophy)) is a popular open source library that's used to control paging in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/componentx` is requested.
 
 To utilize React Router, let's install:
 ```sh
