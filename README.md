@@ -120,7 +120,7 @@ import { useParams } from 'react-router-dom';
 
 const ArticlePage = () => {
   let { articleID } = useParams();
-  console.log(articleID)
+
   return (
     <div>
       <div>Article Page</div>
