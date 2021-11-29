@@ -82,8 +82,8 @@ render() {
       <Router>
         <div>
           <Routes>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/articles/:articleID" component={ArticlePage} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/articles/:articleID" element={<ArticlePage />} />
           </Routes>      
         </div>
       </Router>
