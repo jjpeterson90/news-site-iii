@@ -116,7 +116,7 @@ __For React Router V6__
 
 If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
 
-React Router V6 example
+React Router V6 example for url: http://localhost:3000/articles/:articleID
 ```js
 import { useParams } from 'react-router-dom';
 
