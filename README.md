@@ -113,6 +113,7 @@ As mentioned above, the `HomePage` is largely complete - it simply renders the `
 The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, you can use some React Router VERSION 5 (not VERSION 6) functionality that's automatically being passed into the `ArticlePage` component. React Router provides us with access to the URL params via the `props` object. The index you'll want to target within the articles array will be contained within `this.props.match.params.articleID` - this variable corresponds to [ARTICLEID] in this URL: `http://localhost:3000/article/[ARTICLEID]`
 
 __For React Router V6__
+
 If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
 
 React Router V6 example
