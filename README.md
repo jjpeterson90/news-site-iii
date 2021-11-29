@@ -2,7 +2,7 @@
 
 ## Initial Setup
 
-Each day of the News Site app will build on the previous day's code, starting with the class-based components version first.
+Each day of the News Site app will build on the previous day's code.
 
 Today, we are going to create 1 new component, 2 pages, and a routing system to build up News Site II. A large majority of this code has already been written for you either here or in the previous day's code. We'll be moving quite a bit of code from one place to another.
 
@@ -10,7 +10,7 @@ Your choice: for this challenge, we have provided the solutions to `news-site-i`
 
 1. Create a new React app from your terminal: `npx create-react-app news-site-ii`
 
-2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-i`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. (Reminder: make sure you're copying over your class-based components first.)
+2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-i`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. 
 
 3. Copy over the `App.js` from either this repo or your `news-site-i` into your new `news-site-ii` project.
 
