@@ -66,7 +66,7 @@ $ npm install react-router-dom --save
 In `App.js`, bring in the necessary libraries from the package you just installed:
 
 ```javascript
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 ```
 
 Let's rewrite our `render`:
@@ -81,8 +81,10 @@ render() {
       <AppNav navItems={navItems} handleNavClick={(clickedItem) => console.log(clickedItem)} />
       <Router>
         <div>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/articles/:articleID" component={ArticlePage} />
+          <Routes>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/articles/:articleID" component={ArticlePage} />
+          </Routes>      
         </div>
       </Router>
     </div>
