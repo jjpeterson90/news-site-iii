@@ -14,21 +14,13 @@ Your choice: for this challenge, we have provided the solutions to `news-site-i`
 
 3. Copy over the `App.js` from either this repo or your `news-site-i` into your new `news-site-ii` project.
 
-4. Later today, we will be adding some styling. There are many libraries out there but the one we are going to use is [reactstrap](https://reactstrap.github.io/) or [react bootstrap](https://react-bootstrap.github.io/). Reactstrap and React Bootstrap are component libraries for React that uses Bootstrap styles under the hood. For reactstrap we need to install both `bootstrap` and `reactstrap`. You can use either reactstrap or react bootstrap. 
+4. Later today, we will be adding some styling. There are many libraries out there but the one we are going to use is [react bootstrap](https://react-bootstrap.github.io/). React Bootstrap is a component libraries for React that uses Bootstrap styles under the hood. 
 
-Reactstrap
-```sh
-$ npm install bootstrap
-$ npm install reactstrap
-```
-OR
-
-React Bootstrap
 ```sh
 $ npm install react-bootstrap bootstrap
 ```
 
-5. If you're using reactstrap or react-boostrap, add `import 'bootstrap/dist/css/bootstrap.min.css'` to your `src/index.js`. We'll come back to style this app a bit later - at this point, start up your new app. Your code should operate exactly like it did with `news-site-I`. **Do not move forward unless it's the same.**
+5. If you're using react-boostrap, add `import 'bootstrap/dist/css/bootstrap.min.css'` to your `src/index.js`. We'll come back to style this app a bit later - at this point, start up your new app. Your code should operate exactly like it did with `news-site-I`. **Do not move forward unless it's the same.**
 
 6. At the moment, the `<a>` links in your `ArticleTeaser` component appends a `#` to the URL when clicked. This can cause a problem when handling route/url changes later today. Let's modify the `onClick` event handler to alleviate this changing `onClick` to this:
 ```javascript
@@ -56,7 +48,7 @@ The `ArticleList` component will receive an array of `articles` (if you want a r
 Don't worry about this not doing anything yet - we will wire it up in the next section.
 
 ## React Router
-[React Router V6](https://reactrouter.com/docs/en/v6) (older version - [React Router V5](https://reacttraining.com/react-router/web/guides/philosophy)) is a popular open source library that's used to control paging in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/componentx` is requested.
+[React Router V6](https://reactrouter.com/docs/en/v6) is a popular open source library that's used to control routing in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/componentx` is requested.
 
 To utilize React Router, let's install:
 ```sh
@@ -66,7 +58,7 @@ $ npm install react-router-dom --save
 In `App.js`, bring in the necessary libraries from the package you just installed:
 
 ```javascript
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 ```
 
 Let's rewrite our `render`:
@@ -91,6 +83,7 @@ render() {
   );
 }
 ```
+
 Here we are wrapping our app in a `Router` and using `Route` components, which will look for an exact URL path match and render the compenent you specify for that path. Because we think of these components as different pages in our app, we've kept them in a `Pages` directory and named them accordingly.
 
 With this rewrite, we are no longer utilizing `this.state.article` or the imported `ArticleTeaser` and `Article` components in `App.js`. Go ahead and delete those imports and state instantiation.
@@ -142,7 +135,7 @@ Write the code necessary to find the news article and pass it into the `Article`
 As of right now, keep in mind that people are able to actually hit `/articles/0`, which is not REST-ful - all IDs should start at 1. How can we alter the code to both get the correct article in the JSON file and be REST-ful?
 
 ## Style with Bootstrap
-Look into [this resource](https://reactstrap.github.io/?path=/story/home-installation--page) to style everything using Reactstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
+Style everything using React-bootstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
 
 ## Refactor into Functional Components
 Just as you did with `news-site-I`, open a new branch off of your `news-site-II` `master` called `functional-version` and refactor your components to make them functional. (You may have noticed our starting code for today included the functional solutions commented out in the components from `news-site-I` -- feel free to use these or your own.)
