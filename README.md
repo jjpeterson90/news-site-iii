@@ -137,5 +137,3 @@ As of right now, keep in mind that people are able to actually hit `/articles/0`
 ## Style with Bootstrap
 Style everything using React-bootstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
 
-## Refactor into Functional Components
-Just as you did with `news-site-I`, open a new branch off of your `news-site-II` `master` called `functional-version` and refactor your components to make them functional. (You may have noticed our starting code for today included the functional solutions commented out in the components from `news-site-I` -- feel free to use these or your own.)
