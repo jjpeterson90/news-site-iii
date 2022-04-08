@@ -26,7 +26,7 @@ $ npm install react-bootstrap bootstrap
 ```javascript
 onClick={(event) => {
   event.preventDefault();
-  this.props.handleTitleClick(this.props.id);
+  props.handleTitleClick(props.id);
 }}
 ```
 `event.preventDefault()` is the key line here - this will prevent the default behavior of the `<a>` tag. This default behavior is what's responsible for adding this hashtag to the URL.
