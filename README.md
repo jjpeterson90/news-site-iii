@@ -63,30 +63,26 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 Let's rewrite our `render`:
 ```javascript
-render() {
-  const { navItems } = this.state
-
-  return (
-    <div>
-      <h1>AppNav Component</h1>
-      <hr />
-      <AppNav navItems={navItems} handleNavClick={(clickedItem) => console.log(clickedItem)} />
-      <Router>
-        <div>
-          <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/articles/:articleID" element={<ArticlePage />} />
-          </Routes>      
-        </div>
-      </Router>
-    </div>
-  );
-}
+return (
+  <div>
+    <h1>AppNav Component</h1>
+    <hr />
+    <AppNav navItems={navItems} handleNavClick={(clickedItem) => console.log(clickedItem)} />
+    <Router>
+      <div>
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/articles/:articleID" element={<ArticlePage />} />
+        </Routes>      
+      </div>
+    </Router>
+  </div>
+);
 ```
 
 Here we are wrapping our app in a `Router` and using `Route` components, which will look for an exact URL path match and render the compenent you specify for that path. Because we think of these components as different pages in our app, we've kept them in a `Pages` directory and named them accordingly.
 
-With this rewrite, we are no longer utilizing `this.state.article` or the imported `ArticleTeaser` and `Article` components in `App.js`. Go ahead and delete those imports and state instantiation.
+With this rewrite, we are no longer utilizing `article` or the imported `ArticleTeaser` and `Article` components in `App.js`. Go ahead and delete those imports and state instantiation.
 
 At this time, you may see a number of warnings and errors - how do you bring in `HomePage` and `ArticlePage` (found in `src/pages/`)?
 
@@ -98,12 +94,12 @@ If you are seeing the behavior above, you may continue to the next step. If not,
 
 ## HomePage Component
 
-As mentioned above, the `HomePage` is largely complete - it simply renders the `ArticleList` `component`. The one piece of functionality you need to complete is the `handleTitleClick` function being passed into the `ArticleList` `component`. Ultimately, this function should trigger a page change. React Router automatically passes a series of routing-related props to the `HomePage` `component`. One of these is `this.props.history`. You can trigger a page change by calling `this.props.history.push(NEWURL)` if using class based components or look at the `useNavigate` hook from [React Router V6](https://reactrouter.com/docs/en/v6/api#usenavigate) (preferred). Ultimately, this url should look something like this: `this.props.history.push(/articles/${articleID})` or like `navigate(`/articles/${articleID}`)`
+As mentioned above, the `HomePage` is largely complete - it simply renders the `ArticleList` `component`. The one piece of functionality you need to complete is the `handleTitleClick` function being passed into the `ArticleList` `component`. Ultimately, this function should trigger a page change. React Router automatically passes a series of routing-related props to the `HomePage` `component`. We can use the `useNavigate` hook from [React Router V6](https://reactrouter.com/docs/en/v6/api#usenavigate) to manually navigate to a route path. Ultimately, this url should look something like `navigate(`/articles/${articleID}`)`
 
 `articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
 
 ## ArticlePage Component
-The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, you can use some React Router VERSION 5 (not VERSION 6) functionality that's automatically being passed into the `ArticlePage` component. React Router provides us with access to the URL params via the `props` object. The index you'll want to target within the articles array will be contained within `this.props.match.params.articleID` - this variable corresponds to [ARTICLEID] in this URL: `http://localhost:3000/article/[ARTICLEID]`
+The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, we need to obtain the params from the router logic. To do this, we can employ the `useParams()` hook. The index you'll want to target within the articles array will be contained within `params.articleID`, which corresponds to `[articleID]` portion in this URL: `http://localhost:3000/article/[articleID]`
 
 __For React Router V6__
 
