@@ -48,7 +48,7 @@ The `ArticleList` component will receive an array of `articles` (if you want a r
 Don't worry about this not doing anything yet - we will wire it up in the next section.
 
 ## React Router
-[React Router V6](https://reactrouter.com/docs/en/v6) is a popular open source library that's used to control routing in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/componentx` is requested.
+[React Router V6](https://reactrouter.com/docs/en/v6) is a popular open source library that's used to control routing in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/#/componentx` is requested.
 
 To utilize React Router, let's install:
 ```sh
@@ -86,9 +86,9 @@ With this rewrite, we are no longer utilizing `article` or the imported `Article
 
 At this time, you may see a number of warnings and errors - how do you bring in `HomePage` and `ArticlePage` (found in `src/pages/`)?
 
-Once the `HomePage` component is succesfully brought in, it's about 60% complete - once you've defined your route - and assuming you successfully built the `ArticleList` `component` in the step above - you should see a full list of articles at the `/` path (`http://localhost:3000/`).
+Once the `HomePage` component is succesfully brought in, it's about 60% complete - once you've defined your route - and assuming you successfully built the `ArticleList` `component` in the step above - you should see a full list of articles at the `/` path (`http://localhost:3000/#`).
 
-You also should be able to see the `ArticlePage` `component` (`src/pages/ArticlePage`) by navigating to `http://localhost:3000/articles/1`. It should simply have the NavBar at the top and the words `Article Page` (boilerplate).
+You also should be able to see the `ArticlePage` `component` (`src/pages/ArticlePage`) by navigating to `http://localhost:3000/#/articles/1`. It should simply have the NavBar at the top and the words `Article Page` (boilerplate).
 
 If you are seeing the behavior above, you may continue to the next step. If not, ask your classmates or instructional staff for help.
 
@@ -99,13 +99,13 @@ As mentioned above, the `HomePage` is largely complete - it simply renders the `
 `articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
 
 ## ArticlePage Component
-The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, we need to obtain the params from the router logic. To do this, we can employ the `useParams()` hook. The index you'll want to target within the articles array will be contained within `params.articleID`, which corresponds to `[articleID]` portion in this URL: `http://localhost:3000/article/[articleID]`
+The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, we need to obtain the params from the router logic. To do this, we can employ the `useParams()` hook. The index you'll want to target within the articles array will be contained within `params.articleID`, which corresponds to `[articleID]` portion in this URL: `http://localhost:3000/#/article/[articleID]`
 
 __For React Router V6__
 
 If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
 
-React Router V6 example for url: http://localhost:3000/articles/:articleID
+React Router V6 example for url: http://localhost:3000/#/articles/:articleID
 ```js
 import { useParams } from 'react-router-dom';
 
