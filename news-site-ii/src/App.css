@@ -1,0 +1,14 @@
+.portrait {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  height: 100%;
+}
+.article-img {
+  height: 150px;
+  width: 150px;
+}
+.article-img img {
+  object-fit: contain;
+  height: 100%;
+}
