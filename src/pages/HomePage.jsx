@@ -1,4 +1,4 @@
-import ArticleList from '../components/ArticleList/ArticleList.js'
+import ArticleList from '../components/ArticleList/ArticleList.jsx'
 import News from '../data/news.json';
 
 function HomePage() {

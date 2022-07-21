@@ -4,9 +4,9 @@ import { useState } from "react"
 import News from './data/news.json';
 import navItemsData from './data/navItems.json';
 // components
-import AppNav from './components/AppNav/AppNav.js';
-import ArticleTeaser from './components/ArticleTeaser/ArticleTeaser.js'
-import Article from './components/Article/Article.js'
+import AppNav from './components/AppNav/AppNav.jsx';
+import ArticleTeaser from './components/ArticleTeaser/ArticleTeaser.jsx'
+import Article from './components/Article/Article.jsx'
 
 // seed values
 const randomArticleIndex = Math.floor(Math.random() * News.length);

@@ -8,7 +8,7 @@ Today, we are going to create 1 new component, 2 pages, and a routing system to 
 
 Your choice: for this challenge, we have provided the solutions to `news-site-i` in the starting code here. It is up to you whether you would like to use our code or your own code from yesterday.
 
-1. Create a new React app from your terminal: `npx create-react-app news-site-ii`
+1. Create a new React app from your terminal: `npx create vite news-site-ii`
 
 2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-i`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. 
 
@@ -92,18 +92,13 @@ You also should be able to see the `ArticlePage` `component` (`src/pages/Article
 
 If you are seeing the behavior above, you may continue to the next step. If not, ask your classmates or instructional staff for help.
 
-## HomePage Component
-
-As mentioned above, the `HomePage` is largely complete - it simply renders the `ArticleList` `component`. The one piece of functionality you need to complete is the `handleTitleClick` function being passed into the `ArticleList` `component`. Ultimately, this function should trigger a page change. React Router automatically passes a series of routing-related props to the `HomePage` `component`. We can use the `useNavigate` hook from [React Router V6](https://reactrouter.com/docs/en/v6/api#usenavigate) to manually navigate to a route path. Ultimately, this url should look something like `navigate(`/articles/${articleID}`)`
-
-`articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
 
 ## ArticlePage Component
 The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, we need to obtain the params from the router logic. To do this, we can employ the `useParams()` hook. The index you'll want to target within the articles array will be contained within `params.articleID`, which corresponds to `[articleID]` portion in this URL: `http://localhost:3000/#/article/[articleID]`
 
-__For React Router V6__
+__useParams()__
 
-If using React Router V6 you can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
+You can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
 
 React Router V6 example for url: http://localhost:3000/#/articles/:articleID
 ```js
@@ -120,6 +115,21 @@ const ArticlePage = () => {
   )
 }
 ```
+
+## HomePage Component
+
+The one piece of functionality left to complete is the `handleTitleClick` function being passed into the `ArticleList` `component`. Ultimately, this function should trigger a page change. React Router automatically passes a series of routing-related props to the `HomePage` `component`. 
+We can use the `Link` component from `react-router-dom` to manually navigate to a route path. Ultimately, this should look something like 
+
+```js
+import {Link} from "react-router-dom";
+
+  <Link to=`/articles/${articleID}` > title </Link>
+
+```
+
+`articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
+
 
 Write the code necessary to find the news article and pass it into the `Article` component and render it all out on the screen. The Article page should render the article's:
 - Title

@@ -1,4 +1,4 @@
-import Article from '../components/Article/Article.js'
+import Article from '../components/Article/Article.jsx'
 import News from '../data/news.json';
 
 function ArticlePage() {
