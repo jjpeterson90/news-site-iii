@@ -10,7 +10,8 @@ function SectionPage( { articles } ) {
   useEffect(() => {
     let article_list = articles.filter(article => article.section.toLowerCase() == sectionName.toLowerCase() );
     setSectionArticles(article_list)
-  }, [sectionName])
+    console.log(article_list)
+  }, [sectionName, articles])
 
   return (
 	  <div className="container">

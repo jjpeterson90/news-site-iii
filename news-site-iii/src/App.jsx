@@ -30,10 +30,10 @@ function App() {
     }})
   )
 
-  const handleSearch = (event) => {
+  const handleSearch = debounce((event) => {
     const value = event.target.value
     setSearchTitle(value)
-  }
+  }, 500)
 
   useEffect(() => {
     let filtered = articles.filter(article => article.title.toLowerCase().includes(searchTitle.toLowerCase()))
