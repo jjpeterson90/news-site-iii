@@ -3,8 +3,6 @@ import Article from './Article'
 
 function ArticleGroup({article}) {
 
-
-
     return(
         <div>
             <hr className="container" />

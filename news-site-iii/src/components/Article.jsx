@@ -30,11 +30,3 @@ function Article( { title, abstract, byline, image, created_date } ) {
 }
 
 export default Article;
-
-
-// id: randomArticleIndex
-// title: randomArticle.title
-// abstract: randomArticle.abstract
-// byline: randomArticle.byline
-// image: randomArticle.multimedia.length ? randomArticle.multimedia[0].url : null
-// created_date: randomArticle.created_date

@@ -10,16 +10,9 @@ function ArticlePage({getArticleById}) {
     return getArticleById(articleID)
   }
 
-  // (lecture version):
-  // const article = getArticleById(articleID-1)
-
   return (
     <div className="container">
       <Article {...article()}/>
-
-      {/* (lecture version):
-      <Article {...article} /> */}
-
     </div>
   )
 }
