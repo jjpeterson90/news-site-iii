@@ -1,6 +1,6 @@
 import '../App.css'
 
-function Article({title, abstract, byline, image, created_date}) {
+function Article( { title, abstract, byline, image, created_date } ) {
 
   const getPropByLine = () => {
     if (byline === null) return ''

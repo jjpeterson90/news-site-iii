@@ -1,145 +1,71 @@
-# News Site Part II
+# News Site Part III
+
+## High Level Objectives
+1. Build the Section Page - a page that displays articles for a specific section.
+2. Create article search feature on Home Page
 
 ## Initial Setup
+If you want to use your own code, go ahead and replace the `src` folder of this project with the `src` folder from your previous completed solution.
 
-Each day of the News Site app will build on the previous day's code.
+Once you've copied over these files, run `npm install` followed by `npm run dev`. Verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge.
 
-Today, we are going to create 1 new component, 2 pages, and a routing system to build up News Site II. A large majority of this code has already been written for you either here or in the previous day's code. We'll be moving quite a bit of code from one place to another.
+## The Section Page
+The Section Page will be used to display articles that belong to a specific section (specifically, "World", "Science",  or "Books").  The Section Page should be loaded when a user clicks on one of these options in the top navigation.
 
-Your choice: for this challenge, we have provided the solutions to `news-site-i` in the starting code here. It is up to you whether you would like to use our code or your own code from yesterday.
+The route that should display a section page should be `/sections/:sectionName`, where the `:sectionName` parameter would be one of the supported sections (listed above). For example, Clicking on the "World" link in the top navigation would redirect to http://localhost:5173/sections/world - this page would only display articles whose "section" property is set to "world".
 
-1. Create a new React app from your terminal: `npx create vite news-site-ii`
+To accomplish this, you will need to:
 
-2. Copy over the `components`, `data`, and `pages` directories from this repo to the `src/` of your new React project. If you would like to use your own code from `news-site-I`, replace the following files in the `components` directories with your files from `news-site-i`: `Article/Article.js`, `ArticleTeaser/ArticleTeaser.js`, and `AppNav/AppNav.js`. 
+1. Create `SectionPage.js` inside of `src/pages`
+2. Create a new route (`/sections/:sectionName`) in App.js which points to the `SectionPage` component
+3. Obtain the `sectionName` from the url using `useParams()`
+4. Within `SectionPage.js`, utilize the `filter()` function to retrieve articles by a specific section, and store them in a state value (`articles`). Remember, we'll be using `useEffect` here, just like we did for our HomePage component. 
+5. Pass `articles` into the `<ArticleList>` component, thereby rendering the `ArticleList` with articles for the desired section. 
 
-3. Copy over the `App.js` from either this repo or your `news-site-i` into your new `news-site-ii` project.
+Attempt to navigate to **http://localhost:5173/#/sections/world**, and confirm that this is showing you the appropriate content. We should only see news articles that have a section value of "world".
 
-4. Later today, we will be adding some styling. There are many libraries out there but the one we are going to use is [react bootstrap](https://react-bootstrap.github.io/). React Bootstrap is a component libraries for React that uses Bootstrap styles under the hood. 
+## Section Links in `AppNav.js`
+Now we need to update our AppNav component to use the new route that we added. We'll be using the Link component from the React Router, just like before, to facilitate internal navigation within our application. 
 
-```sh
-$ npm install react-bootstrap bootstrap
-```
+Attempt to navigate from the home page to a section page, using the AppNav links. Verify that we are taken to the correct page and showing the appropriate content.
 
-5. If you're using react-boostrap, add `import 'bootstrap/dist/css/bootstrap.min.css'` to your `src/index.js`. We'll come back to style this app a bit later - at this point, start up your new app. Your code should operate exactly like it did with `news-site-I`. **Do not move forward unless it's the same.**
+Attempt to navigate from one section page to another section page, using the AppNav links. Uh-oh, there seems to be some issue here! While our url changes to the correct location, our content remained the same! Why would this be?? 
 
-6. At the moment, the `<a>` links in your `ArticleTeaser` component appends a `#` to the URL when clicked. This can cause a problem when handling route/url changes later today. Let's modify the `onClick` event handler to alleviate this changing `onClick` to this:
-```javascript
-onClick={(event) => {
-  event.preventDefault();
-  props.handleTitleClick(props.id);
-}}
-```
-`event.preventDefault()` is the key line here - this will prevent the default behavior of the `<a>` tag. This default behavior is what's responsible for adding this hashtag to the URL.
+As we've mentioned before, React smartly only update the page contents when it knows something has changed. In this case, we're going from one section page to another, so the SectionPage component doesn't need to be removed from the view, and thus React keeps the previous one that was in use. However, React doesn't know anything need to change, because the render is only relying on the internal state values (in this case, `articles`). 
+
+We need to get a new set of articles for the new section. How can we do this? This is where the component lifecycle concepts come into play. Our component need to react to an update, in this case, from the url. We will need to use `useParams` to figure out the new section value, and use that to get a new collection of articles. 
 
 
-## Component I: ArticleList
-We have a new component today that has been stubbed out: the `ArticleList` component. Instead of showing a random article, we want our homepage to show a list of article teasers. Your mission is to handle the `props` that are being passed in appropriately and create the content that the component should render.
 
-Props for `ArticleList`:
-1. `articles` - an array of article objects
-2. `handleTitleClick` - a function
+## Article Search
 
-The `ArticleList` component will receive an array of `articles` (if you want a refresher on the data shape, take a look at `src/data/news.json`). `map` over this array and create an array of `ArticleTeaser`s. When you `map` over the `articles` array, it's good to use arrow functions. Take a look at what your `ArticleTeaser` component requires (you may want to utilize the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)):
-- id (how can you use the indexes of the articles array to act as IDs?)
-- title
-- created_date
-- handleTitleClick
+Let's add the ability to search for articles on the Home Page.  In order to accomplish this, the high-level things we need to build are:
 
-Don't worry about this not doing anything yet - we will wire it up in the next section.
+1. Add a new function that accepts a search term, and returns a list of articles with that term in their title.
+2. Add an input box to the `src/pages/HomePage` component that calls the function above, and updates state.
+3. Add a new state value to track the search text. 
 
-## React Router
-[React Router V6](https://reactrouter.com/docs/en/v6) is a popular open source library that's used to control routing in a single page app. Using this library, you can load `component`s based on URL paths. For example, you can configure React Router to load ComponentX when the URL `http://localhost:3000/#/componentx` is requested.
 
-To utilize React Router, let's install:
-```sh
-$ npm install react-router-dom --save
-```
+**HomePage.js**
 
-In `App.js`, bring in the necessary libraries from the package you just installed:
+As mentioned above, you will want to add a text input to the `HomePage`.  Why not use React Bootstraps's nicely styled text input? (Remember that you'll need to import all of these new libraries from `react-bootstrap` at the top of your file!) Go ahead and put this above your `<ArticleList>` component:
 
 ```javascript
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+<InputGroup>
+  <InputGroup.Text>Search</InputGroup.Text>
+  <FormControl placeholder="by Title" onChange={handleSearch} />
+</InputGroup>
 ```
 
-Let's rewrite our `render`:
-```javascript
-return (
-  <div>
-    <h1>AppNav Component</h1>
-    <hr />
-    <AppNav navItems={navItems} handleNavClick={(clickedItem) => console.log(clickedItem)} />
-    <Router>
-      <div>
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/articles/:articleID" element={<ArticlePage />} />
-        </Routes>      
-      </div>
-    </Router>
-  </div>
-);
-```
+Note that we've provided the method that should be called from the `onChange` event - it's a class method called `handleSearch()`. 
+Create the `handleSearch()` class method on the `HomePage.js` component. Within this event handler, you should:
+1. Extract the value of the text input and set it to a new state value (`searchTitle`)
+2. Update our useEffect() dependency array to include `searchTitle`
 
-Here we are wrapping our app in a `Router` and using `Route` components, which will look for an exact URL path match and render the compenent you specify for that path. Because we think of these components as different pages in our app, we've kept them in a `Pages` directory and named them accordingly.
+If these steps are completed successfully, the list of articles displayed on the home page should change as you interact with the text box.
 
-With this rewrite, we are no longer utilizing `article` or the imported `ArticleTeaser` and `Article` components in `App.js`. Go ahead and delete those imports and state instantiation.
+## Extended Challenge #1
+Can you extend the search feature to work for the Home or any Section page? *HINT: Consider moving the search input to the AppNav component!*
 
-At this time, you may see a number of warnings and errors - how do you bring in `HomePage` and `ArticlePage` (found in `src/pages/`)?
-
-Once the `HomePage` component is succesfully brought in, it's about 60% complete - once you've defined your route - and assuming you successfully built the `ArticleList` `component` in the step above - you should see a full list of articles at the `/` path (`http://localhost:3000/#`).
-
-You also should be able to see the `ArticlePage` `component` (`src/pages/ArticlePage`) by navigating to `http://localhost:3000/#/articles/1`. It should simply have the NavBar at the top and the words `Article Page` (boilerplate).
-
-If you are seeing the behavior above, you may continue to the next step. If not, ask your classmates or instructional staff for help.
-
-
-## ArticlePage Component
-The `ArticlePage` component should render the `Article` component, and provide the necessary props to the child component. If you remember, `Article` accepts a variety of props from a single article object in `src/data/news.json` array. In order to determine the array object to use, we need to obtain the params from the router logic. To do this, we can employ the `useParams()` hook. The index you'll want to target within the articles array will be contained within `params.articleID`, which corresponds to `[articleID]` portion in this URL: `http://localhost:3000/#/article/[articleID]`
-
-__useParams()__
-
-You can use the `useParams` hook to retrieve dynamic params from the current URL (ex: `articleID`) that were matched by the Route Path.
-
-React Router V6 example for url: http://localhost:3000/#/articles/:articleID
-```js
-import { useParams } from 'react-router-dom';
-
-const ArticlePage = () => {
-  let { articleID } = useParams();
-
-  return (
-    <div>
-      <div>Article Page</div>
-      <div>Article ID: { articleID }</div>
-    </div>
-  )
-}
-```
-
-## HomePage Component
-
-The one piece of functionality left to complete is the `handleTitleClick` function being passed into the `ArticleList` `component`. Ultimately, this function should trigger a page change. React Router automatically passes a series of routing-related props to the `HomePage` `component`. 
-We can use the `Link` component from `react-router-dom` to manually navigate to a route path. Ultimately, this should look something like 
-
-```js
-import {Link} from "react-router-dom";
-
-  <Link to=`/articles/${articleID}` > title </Link>
-
-```
-
-`articleID` corresponds to the index of an item in the articles array, and is a parameter already being passed into this function. You should be able to click links in your homepage and be able to hit different urls that correspond with the article that you clicked.
-
-
-Write the code necessary to find the news article and pass it into the `Article` component and render it all out on the screen. The Article page should render the article's:
-- Title
-- Created Date
-- Byline
-- Image (Note: Someone changed the data structure that we are receiving for news articles. Look inside the JSON and see if you can find the URL for the images. Then, update your code to account for this)
-- Abstract
-
-As of right now, keep in mind that people are able to actually hit `/articles/0`, which is not REST-ful - all IDs should start at 1. How can we alter the code to both get the correct article in the JSON file and be REST-ful?
-
-## Style with Bootstrap
-Style everything using React-bootstrap! Let's make the Nav bar, the list of ArticleTeasers, and the Articles look nice.
-
+## Extended Challenge #2
+There is a something bad about our current design for filtering articles. Currently, we're making an "API call" for **every** character that a user types into the search field. This may seem okay when our total data size is around 40 articles, but imagine what would happen if we had to serve 40,000 articles, or even worse, 40 million articles! Making so many API calls is not the best design, especially if it can be avoided. In this case, there should be a way to cut down the number of API calls we need to make, right? Think about all of the tools we have at our disposal... <ins>can you update the design of News Site so that the filtering functionality is retained, but our total API calls are reduced?</ins>
